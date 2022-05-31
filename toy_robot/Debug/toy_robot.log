@@ -1,6 +1,2 @@
-﻿  command.cpp
-  toy_robot.cpp
-e:\#####git projects\c++\vs17_toy_robot\toy_robot\toy_robot\toy_robot.h(11): error C2504: 'Command': base class undefined
-e:\#####git projects\c++\vs17_toy_robot\toy_robot\toy_robot\toy_robot.cpp(47): error C2039: 'ReadCommand': is not a member of 'ToyRobot::Robot'
-  e:\#####git projects\c++\vs17_toy_robot\toy_robot\toy_robot\toy_robot.h(11): note: see declaration of 'ToyRobot::Robot'
-  Generating Code...
+﻿  toy_robot.cpp
+  toy_robot.vcxproj -> D:\apps\c++\Debug\toy_robot.exe

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1622
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "toy_robot", "toy_robot\toy_robot.vcxproj", "{B9E1A400-41DF-4582-8CAE-0368900BBEBB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RobotTest", "RobotTest\RobotTest.vcxproj", "{BFDA58A3-1189-4A1B-AEFA-16ED2429E7E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{B9E1A400-41DF-4582-8CAE-0368900BBEBB}.Release|x64.Build.0 = Release|x64
 		{B9E1A400-41DF-4582-8CAE-0368900BBEBB}.Release|x86.ActiveCfg = Release|Win32
 		{B9E1A400-41DF-4582-8CAE-0368900BBEBB}.Release|x86.Build.0 = Release|Win32
+		{BFDA58A3-1189-4A1B-AEFA-16ED2429E7E2}.Debug|x64.ActiveCfg = Debug|x64
+		{BFDA58A3-1189-4A1B-AEFA-16ED2429E7E2}.Debug|x64.Build.0 = Debug|x64
+		{BFDA58A3-1189-4A1B-AEFA-16ED2429E7E2}.Debug|x86.ActiveCfg = Debug|Win32
+		{BFDA58A3-1189-4A1B-AEFA-16ED2429E7E2}.Debug|x86.Build.0 = Debug|Win32
+		{BFDA58A3-1189-4A1B-AEFA-16ED2429E7E2}.Release|x64.ActiveCfg = Release|x64
+		{BFDA58A3-1189-4A1B-AEFA-16ED2429E7E2}.Release|x64.Build.0 = Release|x64
+		{BFDA58A3-1189-4A1B-AEFA-16ED2429E7E2}.Release|x86.ActiveCfg = Release|Win32
+		{BFDA58A3-1189-4A1B-AEFA-16ED2429E7E2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,26 +8,47 @@
 
 using namespace std;
 namespace ToyRobot {
-	class Robot : public Command {
-	public:
-		Robot() {};
+	enum commands {
+		PLACE,
+		MOVE,
+		LEFT,
+		RIGHT,
+		REPORT
 	};
-	class Position {
-	public:
-		Position() {};
-
+	enum placement {
+		NORTH,
+		SOUTH,
+		EAST,
+		WEST,
+	};
+	struct Movement {
+		int st_x;
+		int st_y;
+		placement st_place;
 	};
 	class Command {
 	public:
 		Command() {};
 		bool ReadPlacementCommand(string);
 		bool ReadCommand(string);
-		
 	private:
-		bool IsValidCommand(string);
 		string _command;
 
 	};
+	class Robot : public Command {
+	public:
+		Robot() {};
+		string GetLastPlace();
+	private:
+		Movement _m;
+	};
+	class Position {
+	public:
+		Position() {};
+		bool CalculateMove(commands, Movement);
+		Movement GetCurrentPosition(); 
+	};
+
 	class Parser {
 	public:
 		Parser() {
@@ -36,7 +57,8 @@ namespace ToyRobot {
 			_x = 0;
 			_y = 0;
 		};
-		bool ParseCommand(string s);
+		bool ParseCommand(string , Movement*);
+		bool ParseCoordinates(string,Movement*);
 	private:
 		string _command;
 		string _placement;
