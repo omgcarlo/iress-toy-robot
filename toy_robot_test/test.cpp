@@ -1,5 +1,9 @@
 #include "pch.h"
+#include "Command.h"
 #include "toy_robot.h"
+#include "Parser.h"
+#include "Position.h"
+#include "Robot.h"
 
 using namespace ToyRobot;
 TEST(TestMain, ExampleTest1) {

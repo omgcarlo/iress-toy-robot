@@ -151,9 +151,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Command.cpp" />
+    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="Position.cpp" />
+    <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="Table.cpp" />
     <ClCompile Include="toy_robot.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="Parser.h" />
+    <ClInclude Include="Position.h" />
+    <ClInclude Include="Robot.h" />
+    <ClInclude Include="Table.h" />
     <ClInclude Include="toy_robot.h" />
   </ItemGroup>
   <ItemGroup>
