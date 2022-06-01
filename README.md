@@ -50,9 +50,33 @@ It is **not required** to provide any graphical output showing the movement of t
 The application should handle error states appropriately and be robust to user input.
 
 **Constraints:** 
-
 The toy robot must not fall off the table during movement. This also includes the initial placement of the toy robot. Any move that would cause the robot to fall must be ignored.
+
+#### Visualization
+
+To visualize the robot movement and starting point please see reference below:
+
+##### PLACE at 0,0,NORTH
+As you could see we started at the bottom left corner of the table to mark the 0,0(x,y) coordinate
+
+![0_place](https://user-images.githubusercontent.com/13585907/171349681-9fbae0f6-2255-47ea-be05-2aa77e53e09c.PNG)
+
+##### MOVE
+When MOVE command is entered, we move the robot(bug) to 1 coordinate where the robot(bug) is facing
+
+![1_move](https://user-images.githubusercontent.com/13585907/171349691-ab8f1205-0914-4c2d-8701-5db7869ba764.PNG)
+##### LEFT/RIGHT
+When LEFT command is entered, we move turn the robot(bug) to the left/right.
+
+![2_left](https://user-images.githubusercontent.com/13585907/171349723-3d81b11e-2df5-4eff-a636-25142e8d2123.PNG)
+
+##### REPORT
+When REPORT command is entered, we get the position of the robot(bug)
+
+![3_move_report](https://user-images.githubusercontent.com/13585907/171349731-23da5053-7a16-465f-a975-61aa9cfda006.PNG)
+
 <a name="example"/>
+
 ## Example Input and Output: 
 ### example 1
 Input
