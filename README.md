@@ -1,9 +1,9 @@
 # toy-robot-challenge
 C++ Technical Challenge
 ## Table of Contents  
-* [Prerequisite and Instructions](#prerequisite)  
 * [Description and requirements](#description)  
-* [Constraints](#constraints)  
+* [Constraints](#constraints) 
+* [Prerequisite and Instructions](#prerequisite)   
 * [Example](#example)  
 
 
