@@ -26,29 +26,37 @@ namespace ToyRobot {
 		int st_y;
 		placement st_place;
 	};
+
+	class Position {
+	public:
+		Position() {};
+		bool CalculateMove(commands, Movement, Position*);
+		bool PlacePosition(Movement);
+		void SetPosition(Movement);
+		Movement GetPosition();
+	private:
+		Movement _m;
+	};
+
 	class Command {
 	public:
 		Command() {};
-		bool ReadPlacementCommand(string);
-		bool ReadCommand(string);
+		bool ReadPlacementCommand(string,Position*);
+		bool ReadCommand(string, Position*);
 	private:
 		string _command;
-
+		Position _pos;
 	};
+
 	class Robot : public Command {
 	public:
 		Robot() {};
 		string GetLastPlace();
+		void SetPosition(Movement);
 	private:
 		Movement _m;
 	};
-	class Position {
-	public:
-		Position() {};
-		bool CalculateMove(commands, Movement);
-		Movement GetCurrentPosition(); 
-	};
-
+	
 	class Parser {
 	public:
 		Parser() {
@@ -57,7 +65,7 @@ namespace ToyRobot {
 			_x = 0;
 			_y = 0;
 		};
-		bool ParseCommand(string , Movement*);
+		bool ParseCommand(string ,commands*, Movement*);
 		bool ParseCoordinates(string,Movement*);
 	private:
 		string _command;

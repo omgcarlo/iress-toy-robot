@@ -8,36 +8,72 @@
 #include "toy_robot.h"
 
 using namespace ToyRobot;
-bool Command::ReadPlacementCommand(string sCommand) {
+// 
+bool Position::CalculateMove(commands c, Movement m, Position *p) {
+	switch (c)
+	{
+	case ToyRobot::PLACE:
+		break;
+	case ToyRobot::MOVE:
+		break;
+	case ToyRobot::LEFT:
+		break;
+	case ToyRobot::RIGHT:
+		break;
+	case ToyRobot::REPORT:
+		break;
+	default:
+		break;
+	}
+	return false;
+}
+void Robot::SetPosition(Movement m) {
+	this->_m.st_place = m.st_place;
+	this->_m.st_x = m.st_x;
+	this->_m.st_y = m.st_y;
+}
+void Position::SetPosition(Movement m) {
+	this->_m.st_place = m.st_place;
+	this->_m.st_x = m.st_x;
+	this->_m.st_y = m.st_y;
+}
+bool Command::ReadPlacementCommand(string sCommand, Position* pos) {
 	Parser p;
 	Movement m;
+	commands c;
 	bool b_results = true;
-	if (p.ParseCommand(sCommand, &m) == true) {
-
+	if (p.ParseCommand(sCommand,&c, &m) == true) {
+		if (c != commands::PLACE) {
+			b_results = false;
+		}
+		pos->SetPosition(m);
+		
 	}
 	else {
 		return false;
 	}
 	return b_results;
 }
-bool Command::ReadCommand(string sCommand) {
+bool Command::ReadCommand(string sCommand, Position * pos) {
 	Parser p;
 	Movement m;
-	if (p.ParseCommand(sCommand, &m) == true) {
-		// setters here
+	commands c;
+	if (p.ParseCommand(sCommand,&c, &m) == true) {
+		if (!pos->CalculateMove(c, m, pos)) {
+			return false;
+		}
 	}
 	else {
 		return false;
 	}
 	return false;
 }
-bool Parser::ParseCommand(string sCommand, Movement * m) {
-	string s_command;
-	string s_placement;
+bool Parser::ParseCommand(string sCommand, commands * c, Movement * m) {
+	commands c_command;
 	bool b_results = true;
 	Movement m_movement;
 	if (sCommand.compare(0,5,"PLACE") == 0) {
-		s_command = PLACE;
+		c_command = PLACE;
 		if (ParseCoordinates(sCommand, &m_movement)) {
 			m->st_place = m_movement.st_place;
 			m->st_x = m_movement.st_x;
@@ -48,18 +84,18 @@ bool Parser::ParseCommand(string sCommand, Movement * m) {
 		}
 	}
 	else if (sCommand.compare(0, 4, "MOVE") == 0) {
-		s_command = MOVE;
+		c_command = MOVE;
 	}
 	else if (sCommand.compare(0, 4, "LEFT") == 0) {
-		s_command = LEFT;
+		c_command = LEFT;
 	}
 	else if (sCommand.compare(0, 5, "RIGHT") == 0) {
-		s_command = RIGHT;
+		c_command = RIGHT;
 	}
 	else {
 		b_results = false;
 	}
-
+	c = &c_command;
 	return b_results;
 }
 // this function is only used by PLACE command
@@ -108,15 +144,16 @@ string Robot::GetLastPlace() {
 int main()
 {
 	Robot r;
+	Position p;
 	string sInput;
 	cout << "Input Robot Command:";
 	getline(cin,sInput);
-	if (!r.ReadPlacementCommand(sInput)) {
+	if (!r.ReadPlacementCommand(sInput, &p)) {
 		cout << "Input is invalid";
 	}
 	while (true) {
 		getline(cin, sInput);
-		if (!r.ReadCommand(sInput)) {
+		if (!r.ReadCommand(sInput,&p)) {
 			break;
 		}
 	}
