@@ -26,6 +26,7 @@ type Position::CalculateMove(commands c, Movement m, Position *p) {
 	switch (c)
 	{
 	case ToyRobot::PLACE:
+		p->SetPosition(m);
 		break;
 	case ToyRobot::MOVE:
 		if(m.st_place == ::NORTH){

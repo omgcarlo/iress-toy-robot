@@ -136,6 +136,32 @@ TEST(TestMain, SimpleTest3) {
 
 	EXPECT_EQ(r.GetLastPlace(), "0,1,WEST");
 }
+TEST(TestMain, SimpleTest4) {
+	Robot r;
+	Position p;
+	string user_input = "PLACE 1,1,EAST";
+
+	r.ReadPlacementCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "RIGHT";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "PLACE 1,1,EAST";
+	r.ReadPlacementCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "REPORT";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	EXPECT_EQ(r.GetLastPlace(), "1,1,EAST");
+}
 TEST(TestMain, OutOfTableTest1) {
 	Robot r;
 	Position p;
