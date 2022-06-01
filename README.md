@@ -1,16 +1,10 @@
 # toy-robot-challenge
 C++ Technical Challenge
 ## Table of Contents  
-* [Prerequisite](#prerequisite)  
+* [Prerequisite and Instructions](#prerequisite)  
 * [Description and requirements](#description)  
 * [Constraints](#constraints)  
 * [Example](#example)  
-
-<a name="prerequisite"/>
-
-## Prerequisite
-* Create and tested using Visual Studio 2019(MICROSOFT VISUAL C++ 2015 - 2022 RUNTIME)
-* Gtest(google test) was use for unit testing
 
 
 <a name="description"/>
@@ -84,6 +78,22 @@ The following features are yet to be implemented:
 * Support a different shaped table
 * Macros
 * Add a 3rd dimension
+* 
+<a name="prerequisite"/>
+
+## Prerequisite
+* Create and tested using Visual Studio 2019(MICROSOFT VISUAL C++ 2015 - 2022 RUNTIME)
+* Gtest(google test) was use for unit testing
+
+## Instructions
+### Unit Test
+* Download or Clone the Repository git@github.com:omgcarlo/toy-robot-challenge.git
+* Run toy_robot.sln via Visual Studio(preferable Visual Studio 2019 or up)
+* By default, the (gtest) unit test will be the start up application. 
+* Run it via "Local Windows Debugger"
+### Application(exe)
+* [Download Application Here](https://github.com/omgcarlo/toy-robot-challenge/releases/tag/basic_feature)
+* Run Application
 
 <a name="example"/>
 
