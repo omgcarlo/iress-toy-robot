@@ -110,6 +110,136 @@ TEST(TestMain, SimpleTest2) {
 
 	EXPECT_EQ(r.GetLastPlace(), "2,0,SOUTH");
 }
+TEST(TestMain, SimpleTest3) {
+	Robot r;
+	Position p;
+	string user_input = "PLACE 1,1,EAST";
+
+	r.ReadPlacementCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "RIGHT";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "RIGHT";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "REPORT";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	EXPECT_EQ(r.GetLastPlace(), "0,1,WEST");
+}
+TEST(TestMain, OutOfTableTest1) {
+	Robot r;
+	Position p;
+	string user_input = "PLACE 1,1,NORTH";
+
+	r.ReadPlacementCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "LEFT";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "REPORT";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	EXPECT_EQ(r.GetLastPlace(), "0,2,WEST");
+}
+TEST(TestMain, OutOfTableTest2) {
+	// Out of bounce of the table in y-axis
+	Robot r;
+	Position p;
+	string user_input = "PLACE 1,1,NORTH";
+
+	r.ReadPlacementCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "REPORT";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	EXPECT_EQ(r.GetLastPlace(), "1,5,NORTH");
+}
+TEST(TestMain, OutOfTableTest3) {
+	// Out of bounce of the table in x-axis
+	Robot r;
+	Position p;
+	string user_input = "PLACE 1,1,EAST";
+
+	r.ReadPlacementCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "MOVE";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	user_input = "REPORT";
+	r.ReadCommand(user_input, &p);
+	r.SetPosition(p.GetPosition());
+
+	EXPECT_EQ(r.GetLastPlace(), "5,1,EAST");
+}
 TEST(TableClass, SetAndGetXY) {
 	// Table t 
 	Table t;
