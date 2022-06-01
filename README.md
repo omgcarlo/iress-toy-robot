@@ -60,7 +60,7 @@ When MOVE command is entered, we move the robot(bug) to 1 coordinate where the r
 ![1_move](https://user-images.githubusercontent.com/13585907/171349691-ab8f1205-0914-4c2d-8701-5db7869ba764.PNG)
 
 **LEFT/RIGHT**<br/>
-When LEFT command is entered, we move turn the robot(bug) to the left/right.<br/>
+When LEFT/RIGHT command is entered, we move turn the robot(bug) to the left/right.<br/>
 ![2_left](https://user-images.githubusercontent.com/13585907/171349723-3d81b11e-2df5-4eff-a636-25142e8d2123.PNG)
 
 **REPORT**<br/>
