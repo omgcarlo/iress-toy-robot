@@ -8,24 +8,104 @@
 #include "toy_robot.h"
 
 using namespace ToyRobot;
+void Table::SetTableDimension(int x, int y){
+	this->_dimensionX = x;
+	this->_dimensionY = y;
+}
+int Table::GetTableDimensionX(){
+	return _dimensionX;
+}
+int Table::GetTableDimensionY(){
+	return _dimensionY;
+}
 // 
-bool Position::CalculateMove(commands c, Movement m, Position *p) {
+type Position::CalculateMove(commands c, Movement m, Position *p) {
 	switch (c)
 	{
 	case ToyRobot::PLACE:
 		break;
 	case ToyRobot::MOVE:
+		if(m.st_place == ::NORTH){
+			if(m.st_y < p->GetTableDimensionX()){
+				m.st_y++;
+			}
+			else{
+				return ::OVER;
+			}
+		}
+		else if(m.st_place == ::SOUTH){
+			if(m.st_y > 0){
+				m.st_y--;
+			}
+			else{
+				return ::OVER;
+			}
+		}
+		else if(m.st_place == ::EAST){
+			if(m.st_x < p->GetTableDimensionX()){
+				m.st_x++;
+			}
+			else{
+				return ::OVER;
+			}
+		}
+		else if(m.st_place == ::WEST){
+			if(m.st_x > 0){
+				m.st_x--;
+			}
+			else{
+				return ::OVER;
+			}
+		}
+		else{
+			return ::FAILED;
+		}
+		
 		break;
 	case ToyRobot::LEFT:
+		if(m.st_place == ::NORTH){
+			m.st_place = ::WEST;
+		}
+		else if(m.st_place == ::SOUTH){
+			m.st_place = ::EAST;
+		}
+		else if(m.st_place == ::EAST){
+			m.st_place = ::SOUTH;
+		}
+		else if(m.st_place == ::WEST){
+			m.st_place = ::NORTH;
+		}
+		else{
+			return ::FAILED;
+		}
 		break;
 	case ToyRobot::RIGHT:
+		if(m.st_place == ::NORTH){
+			m.st_place = ::WEST;
+		}
+		else if(m.st_place == ::SOUTH){
+			m.st_place = ::EAST;
+		}
+		else if(m.st_place == ::EAST){
+			m.st_place = ::SOUTH;
+		}
+		else if(m.st_place == ::WEST){
+			m.st_place = ::NORTH;
+		}
+		else{
+			return FAILED;
+		}
 		break;
 	case ToyRobot::REPORT:
+		return STOP;
 		break;
 	default:
+		return FAILED;
 		break;
 	}
-	return false;
+	p->SetPosition(m);
+	
+	return SUCCESS;
 }
 void Robot::SetPosition(Movement m) {
 	this->_m.st_place = m.st_place;
@@ -47,7 +127,6 @@ bool Command::ReadPlacementCommand(string sCommand, Position* pos) {
 			b_results = false;
 		}
 		pos->SetPosition(m);
-		
 	}
 	else {
 		return false;
@@ -62,12 +141,16 @@ bool Command::ReadCommand(string sCommand, Position * pos) {
 		if (!pos->CalculateMove(c, m, pos)) {
 			return false;
 		}
+		_pos = *pos;
 	}
 	else {
 		return false;
 	}
 	return false;
 }
+// Input : string command 
+// Output: command * c
+//         Movement * m
 bool Parser::ParseCommand(string sCommand, commands * c, Movement * m) {
 	commands c_command;
 	bool b_results = true;
@@ -139,23 +222,45 @@ bool Parser::ParseCoordinates(string sCommand, Movement * m_movement) {
 	return b_results;
 }
 string Robot::GetLastPlace() {
-	return "X,Y NORTH";
+	string sOutput;
+	sOutput.append(_m.st_x + "," + _m.st_y);
+	switch (_m.st_place)
+	{
+	case ::NORTH:
+		sOutput.append("NORTH");
+		break; 
+	case ::SOUTH:
+		sOutput.append("SOUTH");
+		break; 
+	case ::EAST:
+		sOutput.append("EAST");
+		break; 
+	case ::WEST:
+		sOutput.append("WEST");
+		break; 
+	default:
+		break;
+	}
+	return sOutput;
 }
 int main()
 {
 	Robot r;
 	Position p;
 	string sInput;
+	p.SetTableDimension(5,5);
 	cout << "Input Robot Command:";
 	getline(cin,sInput);
 	if (!r.ReadPlacementCommand(sInput, &p)) {
 		cout << "Input is invalid";
 	}
+	r.SetPosition(p.GetPosition());
 	while (true) {
 		getline(cin, sInput);
-		if (!r.ReadCommand(sInput,&p)) {
+		if (r.ReadCommand(sInput,&p) == STOP) {
 			break;
 		}
 	}
+	r.SetPosition(p.GetPosition());
 	cout << r.GetLastPlace();
 }

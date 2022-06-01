@@ -13,7 +13,8 @@ namespace ToyRobot {
 		MOVE,
 		LEFT,
 		RIGHT,
-		REPORT
+		REPORT,
+		OBSTACLE
 	};
 	enum placement {
 		NORTH,
@@ -21,16 +22,22 @@ namespace ToyRobot {
 		EAST,
 		WEST,
 	};
+	enum type{
+		FAILED = 0,
+		SUCCESS = 1,
+		STOP = 2,
+		OVER = 3,
+	};
 	struct Movement {
 		int st_x;
 		int st_y;
 		placement st_place;
 	};
 
-	class Position {
+	class Position: public Table {
 	public:
 		Position() {};
-		bool CalculateMove(commands, Movement, Position*);
+		type CalculateMove(commands, Movement, Position*);
 		bool PlacePosition(Movement);
 		void SetPosition(Movement);
 		Movement GetPosition();
@@ -43,6 +50,7 @@ namespace ToyRobot {
 		Command() {};
 		bool ReadPlacementCommand(string,Position*);
 		bool ReadCommand(string, Position*);
+		void ReportPosition();
 	private:
 		string _command;
 		Position _pos;
@@ -74,7 +82,18 @@ namespace ToyRobot {
 		int _y;
 	};
 	class Table {
+	public:
+		Table(){
+			_dimensionX = 5;
+			_dimensionY = 5;
+		};
+		void SetTableDimension(int,int);
+		int GetTableDimensionX();
+		int GetTableDimensionY();
 
+	private:
+		int _dimensionX;
+		int _dimensionY;
 	};
 }
 #endif /* TOY_ROBOT_H */
