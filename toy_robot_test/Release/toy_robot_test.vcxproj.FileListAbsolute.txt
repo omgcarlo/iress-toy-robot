@@ -1,0 +1,1 @@
+D:\apps\c++\toy_robot_test\Release\toy_robot_test.vcxproj.CopyComplete

@@ -18,6 +18,9 @@ int Table::GetTableDimensionX(){
 int Table::GetTableDimensionY(){
 	return _dimensionY;
 }
+Movement Position::GetPosition() {
+	return this->_m;
+}
 // 
 type Position::CalculateMove(commands c, Movement m, Position *p) {
 	switch (c)
@@ -70,10 +73,10 @@ type Position::CalculateMove(commands c, Movement m, Position *p) {
 			m.st_place = ::EAST;
 		}
 		else if(m.st_place == ::EAST){
-			m.st_place = ::SOUTH;
+			m.st_place = ::NORTH;
 		}
 		else if(m.st_place == ::WEST){
-			m.st_place = ::NORTH;
+			m.st_place = ::SOUTH;
 		}
 		else{
 			return ::FAILED;
@@ -81,10 +84,10 @@ type Position::CalculateMove(commands c, Movement m, Position *p) {
 		break;
 	case ToyRobot::RIGHT:
 		if(m.st_place == ::NORTH){
-			m.st_place = ::WEST;
+			m.st_place = ::EAST;
 		}
 		else if(m.st_place == ::SOUTH){
-			m.st_place = ::EAST;
+			m.st_place = ::WEST;
 		}
 		else if(m.st_place == ::EAST){
 			m.st_place = ::SOUTH;
@@ -133,30 +136,30 @@ bool Command::ReadPlacementCommand(string sCommand, Position* pos) {
 	}
 	return b_results;
 }
-bool Command::ReadCommand(string sCommand, Position * pos) {
+type Command::ReadCommand(string sCommand, Position * pos) {
 	Parser p;
 	Movement m;
 	commands c;
+	bool b_results = true;
+	type t_results;
 	if (p.ParseCommand(sCommand,&c, &m) == true) {
-		if (!pos->CalculateMove(c, m, pos)) {
-			return false;
-		}
+		m = pos->GetPosition();
+		t_results = pos->CalculateMove(c, m, pos);
 		_pos = *pos;
 	}
 	else {
-		return false;
+		b_results = false;
 	}
-	return false;
+	return t_results;
 }
 // Input : string command 
 // Output: command * c
 //         Movement * m
 bool Parser::ParseCommand(string sCommand, commands * c, Movement * m) {
-	commands c_command;
 	bool b_results = true;
 	Movement m_movement;
 	if (sCommand.compare(0,5,"PLACE") == 0) {
-		c_command = PLACE;
+		*c = ::PLACE;
 		if (ParseCoordinates(sCommand, &m_movement)) {
 			m->st_place = m_movement.st_place;
 			m->st_x = m_movement.st_x;
@@ -167,18 +170,20 @@ bool Parser::ParseCommand(string sCommand, commands * c, Movement * m) {
 		}
 	}
 	else if (sCommand.compare(0, 4, "MOVE") == 0) {
-		c_command = MOVE;
+		*c = ::MOVE;
 	}
 	else if (sCommand.compare(0, 4, "LEFT") == 0) {
-		c_command = LEFT;
+		*c = ::LEFT;
 	}
 	else if (sCommand.compare(0, 5, "RIGHT") == 0) {
-		c_command = RIGHT;
+		*c = ::RIGHT;
+	}
+	else if (sCommand.compare(0, 6, "REPORT") == 0) {
+		*c = ::REPORT;
 	}
 	else {
 		b_results = false;
 	}
-	c = &c_command;
 	return b_results;
 }
 // this function is only used by PLACE command
@@ -223,7 +228,10 @@ bool Parser::ParseCoordinates(string sCommand, Movement * m_movement) {
 }
 string Robot::GetLastPlace() {
 	string sOutput;
-	sOutput.append(_m.st_x + "," + _m.st_y);
+	sOutput.append(to_string(_m.st_x));
+	sOutput.append(",");
+	sOutput.append(to_string(_m.st_y));
+	sOutput.append(",");
 	switch (_m.st_place)
 	{
 	case ::NORTH:
@@ -243,16 +251,19 @@ string Robot::GetLastPlace() {
 	}
 	return sOutput;
 }
+/*
 int main()
 {
 	Robot r;
 	Position p;
 	string sInput;
 	p.SetTableDimension(5,5);
-	cout << "Input Robot Command:";
+	cout << "Input Robot Command:\n";
 	getline(cin,sInput);
+
 	if (!r.ReadPlacementCommand(sInput, &p)) {
 		cout << "Input is invalid";
+		return 0;
 	}
 	r.SetPosition(p.GetPosition());
 	while (true) {
@@ -263,4 +274,8 @@ int main()
 	}
 	r.SetPosition(p.GetPosition());
 	cout << r.GetLastPlace();
+	return 0;
+
 }
+*/
+

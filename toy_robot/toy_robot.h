@@ -33,7 +33,20 @@ namespace ToyRobot {
 		int st_y;
 		placement st_place;
 	};
+	class Table {
+	public:
+		Table() {
+			_dimensionX = 5;
+			_dimensionY = 5;
+		};
+		void SetTableDimension(int, int);
+		int GetTableDimensionX();
+		int GetTableDimensionY();
 
+	private:
+		int _dimensionX;
+		int _dimensionY;
+	};
 	class Position: public Table {
 	public:
 		Position() {};
@@ -49,7 +62,7 @@ namespace ToyRobot {
 	public:
 		Command() {};
 		bool ReadPlacementCommand(string,Position*);
-		bool ReadCommand(string, Position*);
+		type ReadCommand(string, Position*);
 		void ReportPosition();
 	private:
 		string _command;
@@ -81,19 +94,6 @@ namespace ToyRobot {
 		int _x;
 		int _y;
 	};
-	class Table {
-	public:
-		Table(){
-			_dimensionX = 5;
-			_dimensionY = 5;
-		};
-		void SetTableDimension(int,int);
-		int GetTableDimensionX();
-		int GetTableDimensionY();
-
-	private:
-		int _dimensionX;
-		int _dimensionY;
-	};
+	
 }
 #endif /* TOY_ROBOT_H */
