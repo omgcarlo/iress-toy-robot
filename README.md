@@ -78,7 +78,7 @@ The following features are yet to be implemented:
 * Support a different shaped table
 * Macros
 * Add a 3rd dimension
-* 
+
 <a name="prerequisite"/>
 
 ## Prerequisite
