@@ -1,5 +1,5 @@
 ﻿  test.cpp
-  toy_robot.lib(toy_robot.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+  toy_robot.lib(Table.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
   Generating code
   Finished generating code
   toy_robot_test.vcxproj -> D:\apps\c++\Release\toy_robot_test.exe

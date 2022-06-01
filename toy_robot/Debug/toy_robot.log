@@ -1,2 +1,5 @@
-﻿  toy_robot.cpp
+﻿  Command.cpp
+  Position.cpp
+  Robot.cpp
+  Generating Code...
   toy_robot.vcxproj -> D:\apps\c++\Debug\toy_robot.lib

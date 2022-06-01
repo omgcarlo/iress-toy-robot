@@ -1,3 +1,2 @@
 ﻿  test.cpp
-toy_robot.lib(toy_robot.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   toy_robot_test.vcxproj -> D:\apps\c++\Debug\toy_robot_test.exe
