@@ -1,47 +1,44 @@
 # toy-robot-challenge
 C++ Technical Challenge
-##### Table of Contents  
+## Table of Contents  
+* [Prerequisite](#prerequisite)  
 * [Description and requirements](#description)  
 * [Constraints](#constraints)  
 * [Example](#example)  
+
+<a name="prerequisite"/>
+
+## Prerequisite
+* Create and tested using Visual Studio 2019(MICROSOFT VISUAL C++ 2015 - 2022 RUNTIME)
+* Gtest(google test) was use for unit testing
+
+
 <a name="description"/>
 
 ## Description and Requirements:
-The application is a simulation of a toy robot moving on a square table top, of dimensions 5 units x 5 units. 
+The application is a simulation of a toy robot moving on a square table top, of dimensions 5 units x 5 units.<br/>
+There are no other obstructions on the table surface.<br/>
+The robot is free to roam around the surface of the table, but must be prevented from falling to destruction.<br/>
+Any movement that would result in the robot falling from the table must be prevented, however further valid movement commands must still be allowed. <br/>
 
-There are no other obstructions on the table surface. 
+Create a console application that can read in commands of the following form - <br/>
+`PLACE X,Y,F`<br/>
+`MOVE`<br/>
+`LEFT`<br/>
+`RIGHT` <br/>
+`REPORT`<br/>
 
-The robot is free to roam around the surface of the table, but must be prevented from falling to destruction. 
+`PLACE` will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST. <br/>
+The origin (0,0) can be considered to be the SOUTH WEST most corner. <br/>
+It is required that the first command to the robot is a PLACE command, <br/>
+after that, any sequence of commands may be issued, in any order, including another PLACE command. <br/>
+The application should discard all commands in the sequence until a valid PLACE command has been executed. <br/>
 
-Any movement that would result in the robot falling from the table must be prevented, however further valid movement commands must still be allowed. 
+`MOVE` will move the toy robot one unit forward in the direction it is currently facing.<br/>
+`LEFT` and `RIGHT` will rotate the robot 90 degrees in the specified direction without changing the position of the robot. <br/>
+`REPORT` will announce the X,Y and F of the robot. <br/>
 
-Create a console application that can read in commands of the following form - 
-
-`PLACE X,Y,F`
-
-`MOVE`
-
-`LEFT`
-
-`RIGHT` 
-
-`REPORT`
-
-`PLACE` will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST. 
-
-The origin (0,0) can be considered to be the SOUTH WEST most corner. 
-
-It is required that the first command to the robot is a PLACE command, after that, any sequence of commands may be issued, in any order, including another PLACE command. 
-The application should discard all commands in the sequence until a valid PLACE command has been executed.
-
-
-`MOVE` will move the toy robot one unit forward in the direction it is currently facing.
-
-`LEFT` and `RIGHT` will rotate the robot 90 degrees in the specified direction without changing the position of the robot. 
-
-`REPORT` will announce the X,Y and F of the robot. 
-
-This can be in any form, but standard output is sufficient. 
+This can be in any form, but standard output is sufficient. <br/>
 
 A robot that is not on the table can choose to ignore the MOVE, LEFT, RIGHT and REPORT commands. 
 
@@ -53,33 +50,27 @@ The application should handle error states appropriately and be robust to user i
 <a name="constraints"/>
 
 ## Constraints: 
-The toy robot must not fall off the table during movement. This also includes the initial placement of the toy robot. Any move that would cause the robot to fall must be ignored.
+The toy robot must not fall off the table during movement.<br/> 
+This also includes the initial placement of the toy robot. <br/>
+Any move that would cause the robot to fall must be ignored.<br/>
 
 ### Visualization
 To visualize the robot movement and starting point please see reference below:
 
-**PLACE at 0,0,NORTH**
-
-As you could see we started at the bottom left corner of the table to mark the 0,0(x,y) coordinate
-
+**PLACE at 0,0,NORTH**<br/>
+As you could see we started at the bottom left corner of the table to mark the 0,0(x,y) coordinate<br/>
 ![0_place](https://user-images.githubusercontent.com/13585907/171349681-9fbae0f6-2255-47ea-be05-2aa77e53e09c.PNG)
 
-**MOVE**
-
-When MOVE command is entered, we move the robot(bug) to 1 coordinate where the robot(bug) is facing
-
+**MOVE**<br/>
+When MOVE command is entered, we move the robot(bug) to 1 coordinate where the robot(bug) is facing<br/>
 ![1_move](https://user-images.githubusercontent.com/13585907/171349691-ab8f1205-0914-4c2d-8701-5db7869ba764.PNG)
 
-**LEFT/RIGHT**
-
-When LEFT command is entered, we move turn the robot(bug) to the left/right.
-
+**LEFT/RIGHT**<br/>
+When LEFT command is entered, we move turn the robot(bug) to the left/right.<br/>
 ![2_left](https://user-images.githubusercontent.com/13585907/171349723-3d81b11e-2df5-4eff-a636-25142e8d2123.PNG)
 
-**REPORT**
-
-When REPORT command is entered, we get the position of the robot(bug)
-
+**REPORT**<br/>
+When REPORT command is entered, we get the position of the robot(bug)<br/>
 ![3_move_report](https://user-images.githubusercontent.com/13585907/171349731-23da5053-7a16-465f-a975-61aa9cfda006.PNG)
 
 ### Limitations
