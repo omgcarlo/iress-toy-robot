@@ -6,18 +6,24 @@
 #include <iostream>
 #include <string>
 #include "toy_robot.h"
-
+#include "Robot.h"
+#include "Position.h"
+#include <vector>
 
 using namespace ToyRobot;
 
-
-/*
 int main()
 {
 	Robot r;
 	Position p;
 	string sInput;
+	std::vector<Robot> robot;
+	
+	cout << "Input Table Size[X,Y]:";
+	getline(cin,sInput);
 	p.SetTableDimension(5,5);
+	cout << "======Toy Robot========\n";
+	cout << "=                     =\n";
 	cout << "Input Robot Command:\n";
 	getline(cin,sInput);
 
@@ -34,9 +40,10 @@ int main()
 	}
 	r.SetPosition(p.GetPosition());
 	cout << r.GetLastPlace();
+	system("pause");
 	return 0;
 
 }
-*/
+
 
 

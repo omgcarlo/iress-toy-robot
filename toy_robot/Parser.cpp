@@ -2,12 +2,14 @@
 #include <string>
 #include "Parser.h"
 #include "toy_robot.h"
+
 using namespace std;
 using namespace ToyRobot;
+
 namespace ToyRobot {
-	// Input : string command 
-	// Output: command * c
-	//         Movement * m
+	// This function is to parse whole string command
+	// Input : string sCommand 
+	// Output: command * c, Movement * m
 	bool Parser::ParseCommand(string sCommand, commands* c, Movement* m) {
 		bool b_results = true;
 		Movement m_movement;
@@ -40,6 +42,8 @@ namespace ToyRobot {
 		return b_results;
 	}
 	// this function is only used by PLACE command
+	// Input : string command 
+	// Output: Movement * m
 	bool Parser::ParseCoordinates(string sCommand, Movement* m_movement) {
 		int i_x;
 		int i_y;
