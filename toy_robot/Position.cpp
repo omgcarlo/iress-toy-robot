@@ -1,50 +1,49 @@
 #include <iostream>
 #include <string>
+#include "Common.h"
 #include "Position.h"
-#include "toy_robot.h"
 #include "Parser.h"
 
 using namespace std;
 using namespace ToyRobot;
 namespace ToyRobot {
-	Movement Position::GetPosition() {
-		return this->_m;
+	Coordinates Position::GetPosition() {
+		return this->_c;
 	}
-
-	type Position::CalculateMove(commands c, Movement m, Position* p) {
+	type Position::CalculateMove(commands c, Coordinates coordinates, Position* p) {
 		switch (c)
 		{
 		case ToyRobot::PLACE:
-			p->SetPosition(m);
+			p->SetPosition(coordinates);
 			break;
 		case ToyRobot::MOVE:
-			if (m.st_place == ::NORTH) {
-				if (m.st_y < p->GetTableDimensionX()) {
-					m.st_y++;
+			if (coordinates.st_place == ::NORTH) {
+				if (coordinates.st_y < p->GetTableDimensionX()) {
+					coordinates.st_y++;
 				}
 				else {
 					return ::OVER;
 				}
 			}
-			else if (m.st_place == ::SOUTH) {
-				if (m.st_y > 0) {
-					m.st_y--;
+			else if (coordinates.st_place == ::SOUTH) {
+				if (coordinates.st_y > 0) {
+					coordinates.st_y--;
 				}
 				else {
 					return ::OVER;
 				}
 			}
-			else if (m.st_place == ::EAST) {
-				if (m.st_x < p->GetTableDimensionX()) {
-					m.st_x++;
+			else if (coordinates.st_place == ::EAST) {
+				if (coordinates.st_x < p->GetTableDimensionX()) {
+					coordinates.st_x++;
 				}
 				else {
 					return ::OVER;
 				}
 			}
-			else if (m.st_place == ::WEST) {
-				if (m.st_x > 0) {
-					m.st_x--;
+			else if (coordinates.st_place == ::WEST) {
+				if (coordinates.st_x > 0) {
+					coordinates.st_x--;
 				}
 				else {
 					return ::OVER;
@@ -56,34 +55,34 @@ namespace ToyRobot {
 
 			break;
 		case ToyRobot::LEFT:
-			if (m.st_place == ::NORTH) {
-				m.st_place = ::WEST;
+			if (coordinates.st_place == ::NORTH) {
+				coordinates.st_place = ::WEST;
 			}
-			else if (m.st_place == ::SOUTH) {
-				m.st_place = ::EAST;
+			else if (coordinates.st_place == ::SOUTH) {
+				coordinates.st_place = ::EAST;
 			}
-			else if (m.st_place == ::EAST) {
-				m.st_place = ::NORTH;
+			else if (coordinates.st_place == ::EAST) {
+				coordinates.st_place = ::NORTH;
 			}
-			else if (m.st_place == ::WEST) {
-				m.st_place = ::SOUTH;
+			else if (coordinates.st_place == ::WEST) {
+				coordinates.st_place = ::SOUTH;
 			}
 			else {
 				return ::FAILED;
 			}
 			break;
 		case ToyRobot::RIGHT:
-			if (m.st_place == ::NORTH) {
-				m.st_place = ::EAST;
+			if (coordinates.st_place == ::NORTH) {
+				coordinates.st_place = ::EAST;
 			}
-			else if (m.st_place == ::SOUTH) {
-				m.st_place = ::WEST;
+			else if (coordinates.st_place == ::SOUTH) {
+				coordinates.st_place = ::WEST;
 			}
-			else if (m.st_place == ::EAST) {
-				m.st_place = ::SOUTH;
+			else if (coordinates.st_place == ::EAST) {
+				coordinates.st_place = ::SOUTH;
 			}
-			else if (m.st_place == ::WEST) {
-				m.st_place = ::NORTH;
+			else if (coordinates.st_place == ::WEST) {
+				coordinates.st_place = ::NORTH;
 			}
 			else {
 				return FAILED;
@@ -96,13 +95,13 @@ namespace ToyRobot {
 			return FAILED;
 			break;
 		}
-		p->SetPosition(m);
+		p->SetPosition(coordinates);
 
 		return SUCCESS;
 	}
-	void Position::SetPosition(Movement m) {
-		this->_m.st_place = m.st_place;
-		this->_m.st_x = m.st_x;
-		this->_m.st_y = m.st_y;
+	void Position::SetPosition(Coordinates coordinates) {
+		this->_c.st_place = coordinates.st_place;
+		this->_c.st_x = coordinates.st_x;
+		this->_c.st_y = coordinates.st_y;
 	}
 }

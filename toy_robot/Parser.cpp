@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Parser.h"
-#include "toy_robot.h"
+#include "Common.h"
 
 using namespace std;
 using namespace ToyRobot;
@@ -10,9 +10,9 @@ namespace ToyRobot {
 	// This function is to parse whole string command
 	// Input : string sCommand 
 	// Output: command * c, Movement * m
-	bool Parser::ParseCommand(string sCommand, commands* c, Movement* m) {
+	bool Parser::ParseCommand(string sCommand, commands* c, Coordinates* m) {
 		bool b_results = true;
-		Movement m_movement;
+		Coordinates m_movement;
 		if (sCommand.compare(0, 5, "PLACE") == 0) {
 			*c = ::PLACE;
 			if (ParseCoordinates(sCommand, &m_movement)) {
@@ -36,6 +36,7 @@ namespace ToyRobot {
 		else if (sCommand.compare(0, 6, "REPORT") == 0) {
 			*c = ::REPORT;
 		}
+
 		else {
 			b_results = false;
 		}
@@ -44,7 +45,7 @@ namespace ToyRobot {
 	// this function is only used by PLACE command
 	// Input : string command 
 	// Output: Movement * m
-	bool Parser::ParseCoordinates(string sCommand, Movement* m_movement) {
+	bool Parser::ParseCoordinates(string sCommand, Coordinates* m_movement) {
 		int i_x;
 		int i_y;
 		string s_place;
@@ -81,6 +82,63 @@ namespace ToyRobot {
 		{
 			return false;
 		}
+		return b_results;
+	}
+	/// <summary>
+	/// This function is only used by Table Dimension Setting
+	/// </summary>
+	/// <param name="sCommand">Input : string sCommand </param>
+	/// <param name="t">Output: Table* t</param>
+	/// <returns></returns>
+	bool Parser::ParseTableDimension(string sCommand, Table* t) {
+		int i_x;
+		int i_y;
+		string s_place;
+		bool b_results = true;
+		try
+		{
+			// get x
+			i_x = stoi(sCommand.substr(0, 1));
+			//get y
+			i_y = stoi(sCommand.substr(2, 1));
+			// set to table
+			t->SetTableDimension(i_x, i_y);
+		}
+		catch (const std::exception&)
+		{
+			return false;
+		}
+		return b_results;
+	}
+	/// <summary>
+	/// Parse Robot Id from command
+	/// </summary>
+	/// <param name="sCommand"> command from getline</param>
+	/// <param name="r_id">output: robot id</param>
+	/// <returns>function status</returns>
+	bool Parser::ParseRobotId(string sCommand, int * r_id) {
+		bool b_results = true;
+		try {
+			if (sCommand.compare(0, 4, "MOVE") == 0) {
+				*r_id = stoi(sCommand.substr(5,1));
+			}
+			else if (sCommand.compare(0, 4, "LEFT") == 0) {
+				*r_id = stoi(sCommand.substr(5, 1));
+			}
+			else if (sCommand.compare(0, 5, "RIGHT") == 0) {
+				*r_id = stoi(sCommand.substr(6, 1));
+			}
+			else if (sCommand.compare(0, 6, "REPORT") == 0) {
+				*r_id = stoi(sCommand.substr(7, 1));
+			}
+			else {
+				b_results = false;
+			}
+		}
+		catch (...) {
+			b_results = false;
+		}
+		
 		return b_results;
 	}
 }

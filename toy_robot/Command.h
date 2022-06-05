@@ -1,7 +1,8 @@
 #ifndef COMMAND_H
 #define COMMAND_H
-#include "toy_robot.h"
 #include "Position.h"
+#include "Common.h"
+#include <string>
 
 namespace ToyRobot {
 	class Command {

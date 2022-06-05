@@ -1,18 +1,19 @@
 #ifndef POSITION_H
 #define POSITION_H
 #include "Table.h"
-#include "toy_robot.h"
+#include "Common.h"
+#include <vector>
 
 namespace ToyRobot {
 	class Position : public Table {
 	public:
 		Position() {};
 		virtual ~Position() {};
-		type CalculateMove(commands, Movement, Position*);
-		void SetPosition(Movement);
-		Movement GetPosition();
+		type CalculateMove(commands, Coordinates, Position*);
+		void SetPosition(Coordinates);
+		Coordinates GetPosition();
 	private:
-		Movement _m;
+		Coordinates _c;
 	};
 }
 

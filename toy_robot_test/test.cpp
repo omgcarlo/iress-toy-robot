@@ -57,115 +57,6 @@ TEST(TestMain, ExampleTest3) {
 
 	EXPECT_EQ(r.GetLastPlace(), "0,0,WEST");
 }
-
-TEST(TestMain, SimpleTest1) {
-	Robot r;
-	Position p;
-	string user_input = "PLACE 1,2,EAST";
-
-	r.ReadPlacementCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "MOVE";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "MOVE";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "LEFT";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "MOVE";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "REPORT";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	EXPECT_EQ(r.GetLastPlace(), "3,3,NORTH");
-}
-TEST(TestMain, SimpleTest2) {
-	Robot r;
-	Position p;
-	string user_input = "PLACE 1,1,EAST";
-
-	r.ReadPlacementCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "MOVE";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "RIGHT";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "MOVE";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "REPORT";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	EXPECT_EQ(r.GetLastPlace(), "2,0,SOUTH");
-}
-TEST(TestMain, SimpleTest3) {
-	Robot r;
-	Position p;
-	string user_input = "PLACE 1,1,EAST";
-
-	r.ReadPlacementCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "RIGHT";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "RIGHT";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "MOVE";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "REPORT";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	EXPECT_EQ(r.GetLastPlace(), "0,1,WEST");
-}
-TEST(TestMain, SimpleTest4) {
-	Robot r;
-	Position p;
-	string user_input = "PLACE 1,1,EAST";
-
-	r.ReadPlacementCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "RIGHT";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "MOVE";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "PLACE 1,1,EAST";
-	r.ReadPlacementCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	user_input = "REPORT";
-	r.ReadCommand(user_input, &p);
-	r.SetPosition(p.GetPosition());
-
-	EXPECT_EQ(r.GetLastPlace(), "1,1,EAST");
-}
 TEST(TestMain, OutOfTableTest1) {
 	Robot r;
 	Position p;
@@ -288,8 +179,8 @@ TEST(TableClass, SetAndGetXY) {
 TEST(PositionClass, SetAndGetPosition) {
 	// Position
 	Position p;
-	Movement m;
-	Movement m1;
+	Coordinates m;
+	Coordinates m1;
 
 	m.st_place = NORTH;
 	m.st_x = 2;
