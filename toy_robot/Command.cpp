@@ -23,19 +23,20 @@ namespace ToyRobot {
 		}
 		return b_results;
 	}
-	type Command::ReadCommand(string sCommand, Position* pos) {
-		Parser p;
-		Coordinates m;
-		commands c;
-		bool b_results = true;
+	type Command::ReadCommand(string sCommand,commands * com, Position* pos) {
+		Parser parser;
+		Coordinates coordinates;
+		commands command;
 		type t_results;
-		if (p.ParseCommand(sCommand, &c, &m) == true) {
-			m = pos->GetPosition();
- 			t_results = pos->CalculateMove(c, m, pos);
+		if (parser.ParseCommand(sCommand, &command, &coordinates) == true) {
+			if (command == OBSTACLE) {
+				parser.ParseCoordinates(sCommand, &coordinates);
+				t_results = OTHER;
+				return t_results;
+			}
+			coordinates = pos->GetPosition();
+ 			t_results = pos->CalculateMove(command, coordinates, pos);
 			_pos = *pos;
-		}
-		else {
-			b_results = false;
 		}
 		return t_results;
 	}

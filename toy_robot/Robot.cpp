@@ -79,16 +79,9 @@ namespace ToyRobot {
 		for (Robot& r : this->_v_robot) {
 			robot_pos = r.GetRobotPosition();
 			i_collide_score = 0;
-			if (robot_pos.GetPosition().st_place == new_pos.GetPosition().st_place) {
-				i_collide_score++;
-			}
-			if (robot_pos.GetPosition().st_x == new_pos.GetPosition().st_x) {
-				i_collide_score++;
-			}
-			if (robot_pos.GetPosition().st_y == new_pos.GetPosition().st_y) {
-				i_collide_score++;
-			}
-			if (i_collide_score == 3) {
+			if (robot_pos.GetPosition().st_z == new_pos.GetPosition().st_z &&
+				robot_pos.GetPosition().st_x == new_pos.GetPosition().st_x && 
+				robot_pos.GetPosition().st_y == new_pos.GetPosition().st_y) {
 				return true;
 			}
 		}

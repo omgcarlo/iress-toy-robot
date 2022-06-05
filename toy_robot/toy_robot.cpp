@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include "toy_robot.h"
+#include "Obstacle.h"
 #include "Robot.h"
 #include "Position.h"
 #include "Parser.h"
@@ -23,6 +24,8 @@ int main()
 	Position position;
 	Parser parser;
 	Table table;
+	Obstacle obstacle;
+	commands cmd;
 
 	string sInput;
 	int robot_id;
@@ -63,7 +66,8 @@ int main()
 		}
 		robot.SetPosition(i,position.GetPosition());
 	}
-	// TODO: Collision check - OK
+	// TODO: Collision check - OK - NEED TO CHECK IN PLACEMENT COMMAND
+	
 	// TODO: Add checking for robot id - OK
 	// TODO: Add obstacles -
 
@@ -77,7 +81,7 @@ int main()
 		if (parser.ParseRobotId(sInput, &robot_id)) {
 			// TODO: out of bounds robot id
 			position = robot.GetRobot(robot_id - 1).GetRobotPosition();
-			t_results = command.ReadCommand(sInput, &position);
+			t_results = command.ReadCommand(sInput, &cmd,&position);
 			switch (t_results)
 			{
 			case FAILED:
@@ -95,6 +99,11 @@ int main()
 				robot.SetPosition(robot_id - 1, position.GetPosition());
 				cout << robot.GetRobot(robot_id - 1).GetLastPlace();
 				return 0;
+				break;
+			case OTHER:
+				if (cmd == OBSTACLE) {
+					obstacle.SetObstacle(position);
+				}
 				break;
 			default:
 				break;

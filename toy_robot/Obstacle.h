@@ -8,13 +8,10 @@ namespace ToyRobot {
 	public:
 		Obstacle() {};
 		virtual ~Obstacle() {};
-		bool SetObstacle(int, int, int);
-		
+		bool SetObstacle(Position);
+		bool CheckObstacle(Position);
 	private:
-		int _x;	// x - axis
-		int _y;	// y - axis
-		int _z; // z - axis/face for 3D
-		Coordinates _m;
+		Coordinates _coordinates;
 	};
 }
 

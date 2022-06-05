@@ -10,7 +10,7 @@ namespace ToyRobot {
 		Command() {};
 		virtual ~Command() {};
 		bool ReadPlacementCommand(string, Position*);
-		type ReadCommand(string, Position*);
+		type ReadCommand(string, commands*, Position*);
 	private:
 		string _command;
 		Position _pos;

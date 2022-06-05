@@ -10,15 +10,15 @@ namespace ToyRobot {
 	// This function is to parse whole string command
 	// Input : string sCommand 
 	// Output: command * c, Movement * m
-	bool Parser::ParseCommand(string sCommand, commands* c, Coordinates* m) {
+	bool Parser::ParseCommand(string sCommand, commands* c, Coordinates* coordinates) {
 		bool b_results = true;
-		Coordinates m_movement;
+		Coordinates c_coordinates;
 		if (sCommand.compare(0, 5, "PLACE") == 0) {
 			*c = ::PLACE;
-			if (ParseCoordinates(sCommand, &m_movement)) {
-				m->st_place = m_movement.st_place;
-				m->st_x = m_movement.st_x;
-				m->st_y = m_movement.st_y;
+			if (ParseCoordinates(sCommand, &c_coordinates)) {
+				coordinates->st_place = c_coordinates.st_place;
+				coordinates->st_x = c_coordinates.st_x;
+				coordinates->st_y = c_coordinates.st_y;
 			}
 			else {
 				b_results = false;
@@ -36,43 +36,59 @@ namespace ToyRobot {
 		else if (sCommand.compare(0, 6, "REPORT") == 0) {
 			*c = ::REPORT;
 		}
-
+		else if (sCommand.compare(0, 8, "OBSTACLE") == 0) {
+			*c = ::OBSTACLE;
+		}
 		else {
 			b_results = false;
 		}
 		return b_results;
 	}
-	// this function is only used by PLACE command
+	// this function is only used by PLACE & OBSTACLE command
 	// Input : string command 
-	// Output: Movement * m
-	bool Parser::ParseCoordinates(string sCommand, Coordinates* m_movement) {
+	// Output: Coordinates * coordinates
+	bool Parser::ParseCoordinates(string sCommand, Coordinates* coordinates) {
 		int i_x;
 		int i_y;
 		string s_place;
 		bool b_results = true;
 		try
 		{
-			// get x
-			i_x = stoi(sCommand.substr(6, 1));
-			//get y
-			i_y = stoi(sCommand.substr(8, 1));
-			//get placement
-			s_place = (sCommand.substr(10));
-			// set to struct
-			m_movement->st_x = i_x;
-			m_movement->st_y = i_y;
+			if (sCommand.compare(0, 5, "PLACE") == 0) {
+				// get x
+				i_x = stoi(sCommand.substr(6, 1));
+				//get y
+				i_y = stoi(sCommand.substr(8, 1));
+				//get placement
+				s_place = (sCommand.substr(10));
+				// set to struct
+				coordinates->st_x = i_x;
+				coordinates->st_y = i_y;
 
-			if (s_place.compare("NORTH") == 0) {
-				m_movement->st_place = NORTH;
+				if (s_place.compare("NORTH") == 0) {
+					coordinates->st_place = NORTH;
+				}
+				else if (s_place.compare("SOUTH") == 0) {
+					coordinates->st_place = SOUTH;
+				}
+				else if (s_place.compare("EAST") == 0) {
+					coordinates->st_place = EAST;
+				}
+				else if (s_place.compare("WEST") == 0) {
+					coordinates->st_place = WEST;
+				}
+				else {
+					b_results = false;
+				}
 			}
-			else if (s_place.compare("SOUTH") == 0) {
-				m_movement->st_place = SOUTH;
-			}
-			else if (s_place.compare("EAST") == 0) {
-				m_movement->st_place = EAST;
-			}
-			else if (s_place.compare("WEST") == 0) {
-				m_movement->st_place = WEST;
+			else if (sCommand.compare(0, 8, "OBSTACLE") == 0) {
+				// get x
+				i_x = stoi(sCommand.substr(9, 1));
+				//get y
+				i_y = stoi(sCommand.substr(10, 1));
+				// set to struct
+				coordinates->st_x = i_x;
+				coordinates->st_y = i_y;
 			}
 			else {
 				b_results = false;

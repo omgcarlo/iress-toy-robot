@@ -28,6 +28,7 @@ namespace ToyRobot {
 		STOP,
 		OVER,
 		COLLIDED,
+		OTHER
 	};
 	// TODO: DEFINE DIMENSIONS
 	enum table_shape {
