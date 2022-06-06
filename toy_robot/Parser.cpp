@@ -77,6 +77,18 @@ namespace ToyRobot {
 				else if (s_place.compare("WEST") == 0) {
 					coordinates->st_place = WEST;
 				}
+				else if (s_place.compare("NORTHWEST") == 0) {
+					coordinates->st_place = NORTHWEST;
+				}
+				else if (s_place.compare("SOUTHWEST") == 0) {
+					coordinates->st_place = SOUTHWEST;
+				}
+				else if (s_place.compare("NORTHEAST") == 0) {
+					coordinates->st_place = NORTHEAST;
+				}
+				else if (s_place.compare("SOUTHEAST") == 0) {
+					coordinates->st_place = SOUTHEAST;
+				}
 				else {
 					b_results = false;
 				}

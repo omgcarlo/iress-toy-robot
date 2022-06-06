@@ -69,9 +69,9 @@ int main()
 	// TODO: Collision check - OK - NEED TO CHECK IN PLACEMENT COMMAND
 	
 	// TODO: Add checking for robot id - OK
-	// TODO: Add obstacles -
-
-	// TODO: Support different shape
+	// TODO: Add obstacles - OK - need testing
+	// TODO: Add support for new direction
+	// TODO: Support different shape 
 	// TODO: Add Macros
 	// TODO: Add 3D dimension
 	
@@ -93,7 +93,14 @@ int main()
 					cout << "ROBOTS COLLIDED";
 					return 0;
 				}
-				robot.SetPosition(robot_id - 1, position.GetPosition());
+				// TODO: Test CheckObstacle
+				else if(obstacle.CheckObstacle(position)){
+					cout << "Obstacle in the area";
+				}
+				else{
+					robot.SetPosition(robot_id - 1, position.GetPosition());
+				}
+				
 				break;
 			case STOP:
 				robot.SetPosition(robot_id - 1, position.GetPosition());

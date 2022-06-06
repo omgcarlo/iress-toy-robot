@@ -21,5 +21,8 @@ namespace ToyRobot {
 	int Table::GetTableDimensionY() {
 		return _dimensionY;
 	}
+	bool Table::SetTableShape(table_shape t_shape){
+		
+	}
 
 }

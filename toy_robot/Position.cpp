@@ -49,6 +49,34 @@ namespace ToyRobot {
 					return ::OVER;
 				}
 			}
+			else if (coordinates.st_place == ::NORTHWEST) {
+				coordinates.st_place = NORTH;
+				CalculateMove(MOVE,coordinates, p);
+				coordinates.st_place = WEST;
+				CalculateMove(MOVE,coordinates, p);
+				coordinates.st_place = NORTHWEST;
+			}
+			else if (coordinates.st_place == ::NORTHEAST) {
+				coordinates.st_place = NORTH;
+				CalculateMove(MOVE,coordinates, p);
+				coordinates.st_place = EAST;
+				CalculateMove(MOVE,coordinates, p);
+				coordinates.st_place = NORTHEAST;
+			}
+			else if (coordinates.st_place == ::SOUTHWEST) {
+				coordinates.st_place = SOUTH;
+				CalculateMove(MOVE,coordinates, p);
+				coordinates.st_place = WEST;
+				CalculateMove(MOVE,coordinates, p);
+				coordinates.st_place = SOUTHWEST;
+			}
+			else if (coordinates.st_place == ::SOUTHEAST) {
+				coordinates.st_place = SOUTH;
+				CalculateMove(MOVE,coordinates, p);
+				coordinates.st_place = EAST;
+				CalculateMove(MOVE,coordinates, p);
+				coordinates.st_place = SOUTHEAST;
+			}
 			else {
 				return ::FAILED;
 			}

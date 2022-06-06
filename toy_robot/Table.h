@@ -14,10 +14,12 @@ namespace ToyRobot {
 		int GetTableDimensionX();
 		int GetTableDimensionY();
 		int GetTableDimensionZ();
+		bool SetTableShape(table_shape);
 	private:
 		int _dimensionX;
 		int _dimensionY;
 		int _dimensionZ;
+		table_shape _shape;
 	};
 }
 
