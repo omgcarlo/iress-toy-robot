@@ -2,6 +2,7 @@
 #define OBSTACLE_H
 #include "Position.h"
 #include "Common.h"
+#include <unordered_map>
 
 namespace ToyRobot {
 	class Obstacle {
@@ -11,10 +12,13 @@ namespace ToyRobot {
 			_obs_id = id;
 		};
 		virtual ~Obstacle() {};
-		bool SetObstacle(Position);
+		// add size
+		bool AddObstacle(Position, unsigned int);
 		bool CheckObstacle(Position);
 	private:
 		std::vector<Coordinates> _obstacles;
+		std::unordered_map<Coordinates, unsigned int> umap_obs;
+
 		int _obs_id;
 	};
 }

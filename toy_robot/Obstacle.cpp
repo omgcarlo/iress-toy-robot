@@ -5,12 +5,21 @@
 #include "Common.h"
 #include <vector>
 
+
 using namespace std;
 using namespace ToyRobot;
 namespace ToyRobot {
-	bool Obstacle::AddObstacle(Position pos ) {
-		this->_obstacles.push_back(_obstacles.size()+1);
-		return false;
+	bool Obstacle::AddObstacle(Position pos, unsigned int size ) {
+		// Add checking if position is over
+		// Add size to the obstacle
+
+		// Add checking for any robot within the position
+		// Denied obstacle if robots are in the position/coordinates
+
+		// Need testing for this statement
+		umap_obs.insert(pos.GetPosition(), size);
+
+		return true;
 	}
 	bool Obstacle::CheckObstacle(Position pos) {
 		for(Coordinates& coordinate: _obstacles){
