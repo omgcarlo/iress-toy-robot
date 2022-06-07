@@ -70,7 +70,8 @@ int main()
 	
 	// TODO: Add checking for robot id - OK
 	// TODO: Add obstacles - OK - need testing
-	// TODO: Add support for new direction
+	// TODO: Add support for new direction - OK for testing
+
 	// TODO: Support different shape 
 	// TODO: Add Macros
 	// TODO: Add 3D dimension
@@ -109,7 +110,7 @@ int main()
 				break;
 			case OTHER:
 				if (cmd == OBSTACLE) {
-					obstacle.SetObstacle(position);
+					obstacle.AddObstacle(position);
 				}
 				break;
 			default:

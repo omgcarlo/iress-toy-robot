@@ -84,16 +84,32 @@ namespace ToyRobot {
 			break;
 		case ToyRobot::LEFT:
 			if (coordinates.st_place == ::NORTH) {
-				coordinates.st_place = ::WEST;
+				coordinates.st_place = ::NORTHWEST;
+				//coordinates.st_place = ::WEST;
 			}
 			else if (coordinates.st_place == ::SOUTH) {
-				coordinates.st_place = ::EAST;
+				//coordinates.st_place = ::EAST;
+				coordinates.st_place = ::SOUTHEAST;
 			}
 			else if (coordinates.st_place == ::EAST) {
-				coordinates.st_place = ::NORTH;
+				//coordinates.st_place = ::NORTH;
+				coordinates.st_place = ::NORTHEAST;
 			}
 			else if (coordinates.st_place == ::WEST) {
+				//coordinates.st_place = ::SOUTH;
+				coordinates.st_place = ::SOUTHWEST;
+			}
+			else if (coordinates.st_place == ::SOUTHWEST) {
 				coordinates.st_place = ::SOUTH;
+			}
+			else if (coordinates.st_place == ::SOUTHEAST) {
+				coordinates.st_place = ::EAST;
+			}
+			else if (coordinates.st_place == ::NORTHEAST) {
+				coordinates.st_place = ::NORTH;
+			}
+			else if (coordinates.st_place == ::NORTHWEST) {
+				coordinates.st_place = ::WEST;
 			}
 			else {
 				return ::FAILED;
@@ -101,15 +117,27 @@ namespace ToyRobot {
 			break;
 		case ToyRobot::RIGHT:
 			if (coordinates.st_place == ::NORTH) {
-				coordinates.st_place = ::EAST;
+				coordinates.st_place = ::NORTHEAST;
 			}
 			else if (coordinates.st_place == ::SOUTH) {
-				coordinates.st_place = ::WEST;
+				coordinates.st_place = ::SOUTHWEST;
 			}
 			else if (coordinates.st_place == ::EAST) {
-				coordinates.st_place = ::SOUTH;
+				coordinates.st_place = ::SOUTHEAST;
 			}
 			else if (coordinates.st_place == ::WEST) {
+				coordinates.st_place = ::NORTHWEST;
+			}
+			else if (coordinates.st_place == ::NORTHEAST) {
+				coordinates.st_place = ::EAST;
+			}
+			else if (coordinates.st_place == ::SOUTHWEST) {
+				coordinates.st_place = ::WEST;
+			}
+			else if (coordinates.st_place == ::SOUTHEAST) {
+				coordinates.st_place = ::SOUTH;
+			}
+			else if (coordinates.st_place == ::NORTHWEST) {
 				coordinates.st_place = ::NORTH;
 			}
 			else {

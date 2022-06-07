@@ -7,11 +7,15 @@ namespace ToyRobot {
 	class Obstacle {
 	public:
 		Obstacle() {};
+		Obstacle(int id){
+			_obs_id = id;
+		};
 		virtual ~Obstacle() {};
 		bool SetObstacle(Position);
 		bool CheckObstacle(Position);
 	private:
-		Coordinates _coordinates;
+		std::vector<Coordinates> _obstacles;
+		int _obs_id;
 	};
 }
 
