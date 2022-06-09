@@ -17,8 +17,7 @@ namespace ToyRobot {
 		// Denied obstacle if robots are in the position/coordinates
 
 		// Need testing for this statement
-		umap_obs.insert(pos.GetPosition(), size);
-
+		//umap_obs.insert(pos.GetPosition(), size);
 		return true;
 	}
 	bool Obstacle::CheckObstacle(Position pos) {

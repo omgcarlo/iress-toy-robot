@@ -1,8 +1,6 @@
 #ifndef POSITION_H
 #define POSITION_H
 #include "Table.h"
-#include "Common.h"
-#include <vector>
 
 namespace ToyRobot {
 	class Position : public Table {

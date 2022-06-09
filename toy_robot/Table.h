@@ -1,5 +1,6 @@
 #ifndef TABLE_H
 #define TABLE_H
+#include "Common.h"
 
 namespace ToyRobot {
 	class Table {
@@ -14,12 +15,12 @@ namespace ToyRobot {
 		int GetTableDimensionX();
 		int GetTableDimensionY();
 		int GetTableDimensionZ();
-		bool SetTableShape(table_shape);
+		//bool SetTableShape(table_shape);
 	private:
 		int _dimensionX;
 		int _dimensionY;
 		int _dimensionZ;
-		table_shape _shape;
+		//table_shape _shape;
 	};
 }
 

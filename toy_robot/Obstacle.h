@@ -17,7 +17,7 @@ namespace ToyRobot {
 		bool CheckObstacle(Position);
 	private:
 		std::vector<Coordinates> _obstacles;
-		std::unordered_map<Coordinates, unsigned int> umap_obs;
+		//std::unordered_map<Coordinates, unsigned int> umap_obs;
 
 		int _obs_id;
 	};

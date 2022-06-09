@@ -1,8 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
-#include "Common.h"
 #include "Position.h"
-#include "Table.h"
+#include "Common.h"
+
 
 namespace ToyRobot {
 	class Parser {

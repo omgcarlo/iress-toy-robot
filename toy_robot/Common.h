@@ -1,10 +1,6 @@
 
 #ifndef COMMON_H
 #define COMMON_H
-#include "Position.h"
-
-// WIP: Need to do more research
-#define BISHOPMOVE(func, param) (*(func)[Position])(param)
 
 using namespace std;
 namespace ToyRobot {

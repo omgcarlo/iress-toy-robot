@@ -110,7 +110,7 @@ int main()
 				break;
 			case OTHER:
 				if (cmd == OBSTACLE) {
-					obstacle.AddObstacle(position);
+					//obstacle.AddObstacle(position);
 				}
 				break;
 			default:

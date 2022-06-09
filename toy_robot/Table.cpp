@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "Table.h"
-#include "toy_robot.h"
 
 using namespace std;
 using namespace ToyRobot;
@@ -21,8 +20,8 @@ namespace ToyRobot {
 	int Table::GetTableDimensionY() {
 		return _dimensionY;
 	}
-	bool Table::SetTableShape(table_shape t_shape){
-		
-	}
+	//bool Table::SetTableShape(table_shape t_shape){
+	//	return false;
+	//}
 
 }

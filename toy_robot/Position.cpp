@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "Common.h"
 #include "Position.h"
 #include "Parser.h"
 
